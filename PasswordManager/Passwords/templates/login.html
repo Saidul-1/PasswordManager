@@ -17,10 +17,11 @@
             <form method = 'POST' class = 'form'>
                 {% csrf_token %}
                 
-                <label for = 'username'>Username</label>
+                <!-- <label for = 'username'>Username</label>
                 <input class = 'inputs', placeholder = 'username' name = 'username' required />
                 <label for = 'password'>Password</label>
-                <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password' required />
+                <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password' required /> -->
+                {{ form.as_p }}
                 <input id = 'button' type = 'submit' value = 'Login' />
             
             </form>

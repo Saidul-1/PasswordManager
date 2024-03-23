@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import *
+from .forms import *
 
 # Create your views here.
 def Signup(request):
@@ -31,19 +32,26 @@ def Signup(request):
 
 def Login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        form = LoginForm(request.POST)
+        if(form.is_valid()):
+            print("VALID!")
+            username = request.POST.get('username')
+            password = request.POST.get('password')
 
-        user = authenticate(username = username, password = password)
-
-        if user is None:
-            return render(request, 'login.html', {'message' : 'Username or Password is Invalid'})
+            user = authenticate(username = username, password = password)
+            
+            if user is None:
+                context={"form":LoginForm(), 'message' : 'Username or Password is Invalid'}
+                return render(request, 'login.html', context)
+            else:
+                login(request, user)
+                return redirect('/home/')
         else:
-
-            login(request, user)
-            return redirect('/home/')
-    
-    return render(request, 'login.html')
+            print("Invalid")
+        
+    form = LoginForm()
+    context = {"form":form}
+    return render(request, 'login.html', context)
 
 
 def Logout(request):
