@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user}}</title>
+</head>
+<body>
+    <div class = 'navbar'>
+        <a href = "">{{user}}</a>
+        <a href = "{% url 'logout' %}">Logout</a>
+    </div>
+    <div class = 'add-pass'>
+        <h3>Add New Password Block</h3>
+        <form method = 'POST'>
+            {% csrf_token %}
+            <label for = 'platform'>Platform Name</label>
+            <input type = 'text', name = 'platform', placeholder='Platform Name' required />
+
+            <label for = 'username'>Username</label>
+            <input type = 'text', name = 'username', placeholder='Username' required />
+
+            <label for = 'password'>Password</label>
+            <input type = 'text', name = 'password', placeholder='password' required />
+        
+            <input type = 'submit' value = 'Add' />
+        </form>
+
+    </div>
+
+    <div class = 'user-password-blocks'>
+        {% for block in PasswordBlocks %}
+        <div class = 'password-block'>
+            <p>Platform Name: {{block.platform}}</p>
+            <p>Usernme: {{block.username}}</p>
+            <p>Password: {{block.password}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
