@@ -1,28 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = 'stylesheet' href = "{% static 'forms.css' %}">
+
     <title>SignUp</title>
 </head>
 <body>
-    <p>{{message}}</p>
-    <form method = 'POST'>
-        {% csrf_token %}
+    <div class = 'container'>
+        <h2 class = 'title'>SignUp</h2>
+        <p>{{message}}</p>
+        <form method = 'POST' class = 'form'>
+            {% csrf_token %}
 
-        <p class = 'title'>Signup</p>
-        <label for = 'email'>Email</label>
-        <input class = 'inputs', placeholder = 'email' name = 'email' required />
-        <label for = 'username'>Username</label>
-        <input class = 'inputs', placeholder = 'username' name = 'username' required />
-        <label for = 'password1'>Password</label>
-        <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password1' required />
-        <label for = 'password2'>Confirm Password</label>
-        <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password2' required />
+            <label for = 'email'>Email</label>
+            <input class = 'inputs', placeholder = 'email' name = 'email' required />
+            <label for = 'username'>Username</label>
+            <input class = 'inputs', placeholder = 'username' name = 'username' required />
+            <label for = 'password1'>Password</label>
+            <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password1' required />
+            <label for = 'password2'>Confirm Password</label>
+            <input class = 'inputs', placeholder = 'password' type = 'password' name = 'password2' required />
 
-        <input id = 'button' type = 'submit' value = 'SignUp' />
+            <input id = 'button' type = 'submit' value = 'SignUp' />
 
-    </form>
-    <a href = "{% url 'login' %}">Already have an account? Login</a>
+        </form>
+        <a href = "{% url 'login' %}">Already have an account? Login</a>
+    </div>    
 </body>
 </html>
