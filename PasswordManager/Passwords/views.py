@@ -48,9 +48,10 @@ def Login(request):
                 return redirect('/home/')
         else:
             print("Invalid")
-        
-    form = LoginForm()
-    context = {"form":form}
+            context={"form":LoginForm(), 'message' : 'All the field must be filled-up'}
+            return render(request, 'login.html', context)
+
+    context = {"form":LoginForm()}
     return render(request, 'login.html', context)
 
 

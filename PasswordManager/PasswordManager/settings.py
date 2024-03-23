@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Passwords',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,6 @@ STATICFILES_DIRS = [ BASE_DIR / 'Passwords/static/Passwords/' ]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+RECAPTCHA_PUBLIC_KEY = '6LcIBKIpAAAAAMahtxHb_OQwPlpFK6QDIq7-LCEx'
+RECAPTCHA_PRIVATE_KEY = '6LcIBKIpAAAAAObjQEXqcHJukBUM1q5BNftpPfN3'
