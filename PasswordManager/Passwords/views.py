@@ -16,16 +16,18 @@ def Signup(request):
         password2 = request.POST.get('password2')
 
         if(password1 != password2):
-            return render(request, 'signup.html', {'message' : 'Password did not matched'})
+            messages.error(request, "Password did not matched!")
+            return render(request, 'signup.html')
 
         duplicateUser = User.objects.filter(username = username)
         if(duplicateUser.exists()):
-            return render(request, 'signup.html', {'message' : 'Username is already exists'})        
+            messages.error(request, "Username is already exists!")
+            return render(request, 'signup.html')        
         
         user = User.objects.create(username = username, email = email)
         user.set_password(password1)
         user.save()
-        messages.success(request, {'message' : 'Account Created Successfully!'})
+        messages.success(request, "Account Created Successfully!")
         return redirect('/login/')
     return render(request, 'signup.html')
 
@@ -41,15 +43,13 @@ def Login(request):
             user = authenticate(username = username, password = password)
             
             if user is None:
-                context={"form":LoginForm(), 'message' : 'Username or Password is Invalid'}
-                return render(request, 'login.html', context)
+                messages.error(request, "Username or Password is Invalid!")
             else:
                 login(request, user)
                 return redirect('/home/')
         else:
             print("Invalid")
-            context={"form":LoginForm(), 'message' : 'All the field must be filled-up'}
-            return render(request, 'login.html', context)
+            messages.error(request, "All fields must be filled-up")
 
     context = {"form":LoginForm()}
     return render(request, 'login.html', context)

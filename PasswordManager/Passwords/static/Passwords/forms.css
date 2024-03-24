@@ -57,4 +57,13 @@ label{
     letter-spacing: 0.05em;
     width: 70%;
 }
-
+.messages{
+    color: white;
+    padding: 2px;
+}
+.success{
+    color:#0f0;
+}
+.error{
+    color: red;
+}
