@@ -8,6 +8,9 @@ from .models import *
 from .forms import *
 
 # Create your views here.
+def Redirect(request):
+    return redirect('/home/')
+
 def Signup(request):
     if request.method == 'POST':
         email = request.POST.get('email')
