@@ -1,2 +1,7 @@
 Django==5.0.3
 django-recaptcha==4.0.0
+gunicorn
+dj-database-url
+python-dotenv
+whitenoise
+
